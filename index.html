@@ -1,0 +1,74 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ClickHouse & Flat File Ingestion Tool</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .section { margin-bottom: 20px; }
+    label { display: block; margin-top: 10px; }
+    input, select, button { padding: 5px; margin-top: 5px; }
+  </style>
+</head>
+<body>
+
+  <h1>Bidirectional Ingestion Tool</h1>
+
+  <div class="section">
+    <label for="source">Select Source:</label>
+    <select id="source">
+      <option value="clickhouse">ClickHouse</option>
+      <option value="flatfile">Flat File</option>
+    </select>
+  </div>
+
+  <div class="section" id="clickhouse-config" style="display: none;">
+    <h3>ClickHouse Configuration</h3>
+    <label>Host: <input type="text" id="ch-host" placeholder="localhost"></label>
+    <label>Port: <input type="number" id="ch-port" placeholder="8123"></label>
+    <label>Database: <input type="text" id="ch-db" placeholder="default"></label>
+    <label>User: <input type="text" id="ch-user" placeholder="default"></label>
+    <label>JWT Token: <input type="text" id="ch-token" placeholder="Your JWT token"></label>
+    <button onclick="connectClickHouse()">Connect & Load Tables</button>
+  </div>
+
+  <div class="section" id="flatfile-config" style="display: none;">
+    <h3>Flat File Configuration</h3>
+    <label>CSV File: <input type="file" id="flatfile-input" accept=".csv"></label>
+    <label>Delimiter: <input type="text" id="delimiter" value=","></label>
+    <button onclick="loadFlatFile()">Load File</button>
+  </div>
+
+  <div class="section">
+    <button onclick="startIngestion()">Start Ingestion</button>
+  </div>
+
+  <div id="status" class="section"></div>
+
+  <script>
+    const sourceSelect = document.getElementById("source");
+    const clickhouseConfig = document.getElementById("clickhouse-config");
+    const flatfileConfig = document.getElementById("flatfile-config");
+
+    sourceSelect.addEventListener("change", () => {
+      const source = sourceSelect.value;
+      clickhouseConfig.style.display = source === "clickhouse" ? "block" : "none";
+      flatfileConfig.style.display = source === "flatfile" ? "block" : "none";
+    });
+
+    function connectClickHouse() {
+      document.getElementById("status").innerText = "Connecting to ClickHouse... (functionality to be implemented)";
+    }
+
+    function loadFlatFile() {
+      document.getElementById("status").innerText = "Loading Flat File... (functionality to be implemented)";
+    }
+
+    function startIngestion() {
+      document.getElementById("status").innerText = "Starting ingestion... (functionality to be implemented)";
+    }
+  </script>
+
+</body>
+</html>
